@@ -10,6 +10,8 @@ metadata:
    heritage: {{ .Release.Service }}
    component: oms-agent
    tier: node
+ annotations:
+   checksum/config: {{ toYaml (default .Values ) | sha256sum }}
 spec:
  updateStrategy:
   type: RollingUpdate
