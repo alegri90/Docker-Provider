@@ -26,6 +26,7 @@ spec:
     dockerProviderVersion: {{ .Values.omsagent.image.dockerProviderVersion }}
     schema-versions: "v1"
     checksum/secret: {{ include (print $.Template.BasePath "/omsagent-secret.yaml") . | sha256sum }}
+    checksum/config: {{ toYaml .Values.omsagent.resources | sha256sum }}
   spec:
   {{- if .Values.omsagent.rbac }}
    serviceAccountName: omsagent
